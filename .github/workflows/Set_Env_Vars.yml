@@ -1,4 +1,4 @@
-name: 'custom GITHUB_ENV var Demo'
+name: 'Set ENV var'
 
 on:  workflow_dispatch
 
