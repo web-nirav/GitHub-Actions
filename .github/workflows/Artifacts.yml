@@ -12,7 +12,7 @@ jobs:
           - name: "Create a Local file"
             run: echo "Creating this file with content and uploading as artifact file and then in other job it can be downloaded and used its content" > file.txt
 
-          - uses: actions/upload-artifact@v2
+          - uses: actions/upload-artifact@v4
             with: 
                 name: file
                 path: file.txt
@@ -23,7 +23,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: job_1
         steps:
-          - uses: actions/download-artifact@v2
+          - uses: actions/download-artifact@v4
             with: 
                 name: file
           - name: Printing the file  content
