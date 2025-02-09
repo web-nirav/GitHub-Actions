@@ -1,0 +1,29 @@
+name: 'Custom Env Vars'
+
+on:
+    workflow_dispatch:
+
+env:
+    DAY_OF_WEEK: Sunday
+    testvar: value1
+
+jobs:
+    mainjob:
+        name: 'Print the env vars'
+        runs-on: ubuntu-latest
+
+        env:
+            GREETING: Dear
+            testvar: value2
+            
+        steps:
+        - name: print_values_of_env_vars
+          run: |
+            echo "$GREETING $FIRST_NAME. Today is $DAY_OF_WEEK!"
+            echo "testvar $testvar"
+            echo "testvar ${{ env.testvar }}"
+
+            env:
+                FIRST_NAME: Nirav
+                testvar: value3
+
