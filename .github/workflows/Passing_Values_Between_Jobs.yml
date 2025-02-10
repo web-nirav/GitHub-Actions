@@ -13,11 +13,13 @@ jobs:
         steps: 
           - name: Set Step1 variable
             id: step1
-            run: echo "::set-output name=var1::First_Value"
+            # run: echo "::set-output name=var1::First_Value" #Deprecated and use below latest
+            run: echo "vat=John" >> $GITHUB_OUTPUT
 
           - name: Set Step2 variable
             id: step2
-            run: echo "::set-output name=var2::Second_Value"
+            # run: echo "::set-output name=var2::Second_Value" #Deprecated and use below latest
+            run: echo "var2=Doe" >> $GITHUB_OUTPUT
         
     display_passed_value_job:
         runs-on: windows-latest
