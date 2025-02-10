@@ -17,7 +17,7 @@ jobs:
 
           - name: Set Step2 variable
             id: step2
-            run: echo "::set-output name:var2::Second_Value"
+            run: echo "::set-output name=var2::Second_Value"
         
     display_passed_value_job:
         runs-on: windows-latest
