@@ -1,0 +1,25 @@
+name: Passing Values Between Steps
+
+on: workflow_dispatch
+
+jobs:
+    my_Job:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Set the value using ENV vars
+            run: |
+                echo "my_name=Nilu" >> $GITHUB_ENV
+
+          - name: Create Variables
+            id: create_var_id
+            run: |
+                echo "Creating a Variables for other next steps to use"
+                echo "::set-output name=name::Nirav"
+                echo "::set-output name=address::Pune"
+
+          - name: Print ENV and Variables values
+            run: |
+                echo "Printing the values"
+                echo ENV Variable my_name: ${{ env.my_name}}
+                echo Variable name: ${{ steps.create_var_id.outputs.name }}
+                echo Variable address: ${{ steps.create_var_id.outputs.address}}

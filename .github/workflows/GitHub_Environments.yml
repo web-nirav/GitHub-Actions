@@ -1,0 +1,15 @@
+name: GitHub Environments
+
+on: workflow_dispatch
+
+jobs:
+    GitHub_Environments_Job:
+        runs-on: ubuntu-latest
+        environment:
+            name: production
+            url: https://github.com
+
+        steps:
+          - name: 'Print Secret from environment'
+            run: |
+                echo "SECRET1: ${{ secrets.SECRET1 }}"

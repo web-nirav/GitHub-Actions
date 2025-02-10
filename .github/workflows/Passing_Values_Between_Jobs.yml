@@ -1,0 +1,30 @@
+name: Passing Values Between Jobs
+
+on: workflow_dispatch
+
+jobs:
+    passing_values_between_jobs:
+        runs-on: ubuntu-latest
+
+        outputs:
+            output1: ${{ steps.step1.outputs.var1 }}
+            output2: ${{ steps.step2.outputs.var2 }}
+
+        steps: 
+          - name: Set Step1 variable
+            id: step1
+            run: echo "::set-output name=var1::First_Value"
+
+          - name: Set Step2 variable
+            id: step2
+            run: echo "::set-output name:var2::Second_Value"
+        
+    display_passed_value_job:
+        runs-on: windows-latest
+        needs: passing_values_between_jobs
+
+        steps:
+          - run: |
+              echo "Displaying the values"
+              echo output1: ${{ needs.passing_values_between_jobs.outputs.output1 }}
+              echo output2: ${{ needs.passing_values_between_jobs.outputs.output2 }}
